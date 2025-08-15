@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HospitalAI - Next-Gen Healthcare Intelligence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #000000;
+      --secondary: #ffffff;
+      --accent: #ff6b35;
+      --accent-hover: #e55a2b;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-light: #999999;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-dark: #1a1a1a;
+      --border: #e1e5e9;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      color: var(--accent);
+      font-size: 2rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--secondary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--secondary);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 4rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .card-content {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Chat Interface */
+    .chat-container {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .chat-box {
+      background: white;
+      border-radius: var(--radius);
+      height: 400px;
+      padding: 1rem;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      max-width: 80%;
+    }
+
+    .message.user {
+      background: var(--accent);
+      color: white;
+      margin-left: auto;
+    }
+
+    .message.ai {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+    }
+
+    .chat-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* Medicine Scan */
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .upload-area:hover {
+      border-color: var(--accent);
+      background: rgba(255, 107, 53, 0.05);
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    /* Auth Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: var(--shadow-hover);
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-subtitle {
+      color: var(--text-secondary);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-hover);
+    }
+
+    .modal-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .modal-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .modal-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-dark);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+      text-align: center;
+      color: #999;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-content {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-2 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Loading animations */
+    .fa-spin {
+      animation: fa-spin 2s infinite linear;
+    }
+
+    @keyframes fa-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-heartbeat"></i>
+        HospitalAI
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <button class="btn btn-secondary" onclick="openModal('login')">Login</button>
+        <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Next-Gen Healthcare Intelligence</h1>
+      <p>Experience the future of healthcare with AI-powered chat assistance and intelligent medicine scanning technology.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-accent" onclick="scrollToSection('features')">
+          <i class="fas fa-rocket"></i>
+          Get Started
+        </button>
+        <button class="btn btn-secondary" onclick="openModal('signup')">
+          <i class="fas fa-user-plus"></i>
+          Free Trial
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Features Section -->
+    <section class="section" id="features">
+      <h2 class="section-title">Powerful Features</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="card-title">AI Health Chat</h3>
+          </div>
+          <div class="card-content">
+            Get instant answers to your health questions with our advanced AI assistant. 24/7 medical guidance at your fingertips.
+          </div>
+          <button class="btn btn-primary" onclick="switchTab('chat')">
+            <i class="fas fa-arrow-right"></i>
+            Start Chat
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-pills"></i>
+            </div>
+            <h3 class="card-title">Medicine Search</h3>
+          </div>
+          <div class="card-content">
+            Search for any medicine by name and get detailed information about dosage, side effects, and interactions.
+          </div>
+          <button class="btn btn-primary" onclick="switchTab('med')">
+            <i class="fas fa-search"></i>
+            Search Medicine
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-history"></i>
+            </div>
+            <h3 class="card-title">Smart History</h3>
+          </div>
+          <div class="card-content">
+            Keep track of all your interactions and medicine scans with our intelligent history management system.
+          </div>
+          <button class="btn btn-primary" onclick="switchTab('history')">
+            <i class="fas fa-list"></i>
+            View History
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="section" id="chat-section">
+      <h2 class="section-title">AI Health Assistant</h2>
+      <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+          <div class="message ai">
+            <strong>AI Assistant:</strong> Hello! I'm your AI health assistant. How can I help you today? You can ask me about symptoms, medications, or general health questions.
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chat-input" placeholder="Ask a health-related question..." />
+          <button class="btn btn-accent" onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+            Send
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Medicine Search -->
+    <section class="section" id="med-section" style="display: none;">
+      <h2 class="section-title">Medicine Search</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-pills"></i>
+          </div>
+          <h3 class="card-title">Search Medicine Information</h3>
+        </div>
+        <div class="card-content">
+          <p>Search for detailed information about any medicine. Get comprehensive details about dosage, side effects, contraindications, and precautions.</p>
+          
+          <div style="margin: 2rem 0;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <input type="text" id="medicine-input" placeholder="Enter medicine name (e.g., Paracetamol, Ibuprofen, Aspirin)" style="flex: 1; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 1rem;" onkeypress="if(event.key==='Enter') searchMedicine()" />
+              <button class="btn btn-accent" onclick="searchMedicine()">
+                <i class="fas fa-search"></i>
+                Search Medicine
+              </button>
+            </div>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+              Examples: Paracetamol, Ibuprofen, Aspirin, Omeprazole, Metformin, Amlodipine, Lisinopril
+            </p>
+          </div>
+          
+
+        </div>
+      </div>
+      <div id="med-results"></div>
+    </section>
+
+    <!-- History Section -->
+    <section class="section" id="history-section" style="display: none;">
+      <h2 class="section-title">Your History</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <h3 class="card-title">Activity History</h3>
+        </div>
+        <div class="card-content">
+          <p>Your chat conversations and medicine searches are saved here. This history is private and only visible to you.</p>
+          <div style="margin-top: 1rem; text-align: center;">
+            <button class="btn btn-secondary" onclick="clearUserHistory()" style="margin-right: 1rem;">
+              <i class="fas fa-trash"></i>
+              Clear History
+            </button>
+            <button class="btn btn-secondary" onclick="exportHistory()" style="margin-right: 1rem;">
+              <i class="fas fa-download"></i>
+              Export History
+            </button>
+            <button class="btn btn-secondary" onclick="testHistory()">
+              <i class="fas fa-bug"></i>
+              Test History
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="history-list" class="card" style="margin-top: 1rem;">
+        <div class="text-center">
+          <i class="fas fa-history" style="font-size: 3rem; color: var(--text-light); margin-bottom: 1rem;"></i>
+          <p>No history yet. Start chatting or searching medicines to see your activity here.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Login Modal -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Welcome Back</h2>
+        <p class="modal-subtitle">Sign in to your account</p>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="login-email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="login-password" required />
+        </div>
+        <button type="submit" class="form-submit">Sign In</button>
+      </form>
+      <div class="modal-footer">
+        <p>Don't have an account? <a href="#" class="modal-link" onclick="switchModal('signup')">Sign up</a></p>
+      </div>
+      <button class="btn btn-secondary" onclick="closeModal()" style="position: absolute; top: 1rem; right: 1rem;">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="modal" id="signup-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Join HospitalAI</h2>
+        <p class="modal-subtitle">Create your account</p>
+      </div>
+      <form onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" id="signup-name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="signup-email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="signup-password" required />
+        </div>
+        <button type="submit" class="form-submit">Create Account</button>
+      </form>
+      <div class="modal-footer">
+        <p>Already have an account? <a href="#" class="modal-link" onclick="switchModal('login')">Sign in</a></p>
+      </div>
+      <button class="btn btn-secondary" onclick="closeModal()" style="position: absolute; top: 1rem; right: 1rem;">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>HospitalAI</h3>
+          <p>Next-generation healthcare intelligence powered by artificial intelligence. Making healthcare accessible and intelligent for everyone.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Features</h3>
+          <a href="#features">AI Health Chat</a>
+          <a href="#features">Medicine Search</a>
+          <a href="#features">Smart History</a>
+          <a href="#features">24/7 Support</a>
+        </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <a href="#about">About Us</a>
+          <a href="#careers">Careers</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p><i class="fas fa-envelope"></i> sharmakshitij154@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +91 9650882793</p>
+          <p><i class="fas fa-map-marker-alt"></i> Delhi, India</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 HospitalAI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Global state
+    let currentUser = null;
+    let chatHistory = [];
+    let medicineHistory = [];
+
+    // History management with user-specific storage
+    function getHistoryKey(userId) {
+        return `hospital_ai_history_${userId}`;
+    }
+
+    function saveHistoryToStorage() {
+        if (!currentUser) return;
+        
+        const historyData = {
+            chatHistory: chatHistory,
+            medicineHistory: medicineHistory,
+            lastUpdated: new Date().toISOString()
+        };
+        
+        localStorage.setItem(getHistoryKey(currentUser.email), JSON.stringify(historyData));
+    }
+
+    function loadHistoryFromStorage() {
+        if (!currentUser) return;
+        
+        const historyKey = getHistoryKey(currentUser.email);
+        const savedHistory = localStorage.getItem(historyKey);
+        
+        if (savedHistory) {
+            try {
+                const historyData = JSON.parse(savedHistory);
+                chatHistory = historyData.chatHistory || [];
+                medicineHistory = historyData.medicineHistory || [];
+            } catch (error) {
+                console.error('Error loading history:', error);
+                chatHistory = [];
+                medicineHistory = [];
+            }
+        } else {
+            chatHistory = [];
+            medicineHistory = [];
+        }
+    }
+
+    function clearUserHistory() {
+        if (!currentUser) return;
+        
+        chatHistory = [];
+        medicineHistory = [];
+        localStorage.removeItem(getHistoryKey(currentUser.email));
+        showHistory();
+    }
+
+    // Navigation
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Tab switching
+    function switchTab(tab) {
+      console.log('Switching to tab:', tab);
+      const sections = ['chat-section', 'med-section', 'history-section'];
+      sections.forEach(section => {
+        document.getElementById(section).style.display = 'none';
+      });
+      
+      if (tab === 'chat') {
+        document.getElementById('chat-section').style.display = 'block';
+      } else if (tab === 'med') {
+        document.getElementById('med-section').style.display = 'block';
+      } else if (tab === 'history') {
+        document.getElementById('history-section').style.display = 'block';
+        showHistory();
+      }
+    }
+
+    // Modal functions
+    function openModal(type) {
+      document.getElementById(`${type}-modal`).classList.add('active');
+    }
+
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.classList.remove('active');
+      });
+    }
+
+    function switchModal(type) {
+      closeModal();
+      openModal(type);
+    }
+
+    // Authentication
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      
+      // Simulate login
+      currentUser = { email, name: email.split('@')[0] };
+      closeModal();
+      updateAuthUI();
+      loadHistoryFromStorage(); // Load user's history
+      showNotification('Successfully logged in!', 'success');
+    }
+
+    function handleSignup(event) {
+      event.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      
+      // Simulate signup
+      currentUser = { email, name };
+      closeModal();
+      updateAuthUI();
+      loadHistoryFromStorage(); // Load user's history (will be empty for new users)
+      showNotification('Account created successfully!', 'success');
+    }
+
+    function logout() {
+      currentUser = null;
+      updateAuthUI();
+      chatHistory = [];
+      medicineHistory = [];
+      showNotification('Logged out successfully!', 'info');
+    }
+
+    function updateAuthUI() {
+      const authButtons = document.querySelector('.auth-buttons');
+      if (currentUser) {
+        authButtons.innerHTML = `
+          <span style="color: var(--text-secondary); margin-right: 1rem;">Welcome, ${currentUser.name}</span>
+          <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        `;
+      } else {
+        authButtons.innerHTML = `
+          <button class="btn btn-secondary" onclick="openModal('login')">Login</button>
+          <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+        `;
+      }
+    }
+
+    // Chat functionality
+    async function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      if (!currentUser) {
+        showNotification('Please login to use the chat feature!', 'warning');
+        return;
+      }
+      
+      addMessage('user', message);
+      input.value = '';
+      
+      // Show loading message
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'message ai';
+      loadingDiv.innerHTML = '<strong>AI Assistant:</strong> <i>Thinking...</i>';
+      document.getElementById('chat-box').appendChild(loadingDiv);
+      
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ question: message })
+        });
+        
+        const data = await response.json();
+        
+        // Remove loading message
+        loadingDiv.remove();
+        
+        if (data.error) {
+          addMessage('ai', `Error: ${data.error}`);
+        } else {
+          addMessage('ai', data.answer);
+        }
+      } catch (error) {
+        // Remove loading message
+        loadingDiv.remove();
+        addMessage('ai', 'Sorry, I encountered an error. Please try again.');
+        console.error('Chat error:', error);
+      }
+    }
+
+    function addMessage(type, text) {
+      const chatBox = document.getElementById('chat-box');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${type}`;
+      messageDiv.innerHTML = `<strong>${type === 'user' ? 'You' : 'AI Assistant'}:</strong> ${text}`;
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      
+      // Save to history
+      if (type === 'user') {
+        chatHistory.push({ question: text, time: new Date() });
+        saveHistoryToStorage();
+      }
+    }
+
+
+
+    // History
+    function showHistory() {
+      console.log('Showing history...');
+      console.log('Current user:', currentUser);
+      console.log('Chat history:', chatHistory);
+      console.log('Medicine history:', medicineHistory);
+      
+      const historyList = document.getElementById('history-list');
+      if (!historyList) {
+        console.error('History list element not found!');
+        return;
+      }
+      
+      const allHistory = [...chatHistory, ...medicineHistory].sort((a, b) => b.time - a.time);
+      console.log('All history:', allHistory);
+      
+      if (allHistory.length === 0) {
+        historyList.innerHTML = `
+          <div class="text-center">
+            <i class="fas fa-history" style="font-size: 3rem; color: var(--text-light); margin-bottom: 1rem;"></i>
+            <p>No history yet. Start chatting or searching medicines to see your activity here.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const historyHTML = allHistory.map(item => {
+        const time = item.time.toLocaleString();
+        if (item.question) {
+          return `<div style="padding: 1rem; border-bottom: 1px solid var(--border);">
+            <strong>Chat:</strong> ${item.question}
+            <br><small style="color: var(--text-light);">${time}</small>
+          </div>`;
+        } else {
+          return `<div style="padding: 1rem; border-bottom: 1px solid var(--border);">
+            <strong>Medicine Search:</strong> ${item.name}
+            <br><small style="color: var(--text-light);">${time}</small>
+          </div>`;
+        }
+      }).join('');
+      
+      historyList.innerHTML = historyHTML;
+      console.log('History displayed successfully');
+    }
+
+    // Notifications
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        z-index: 3000;
+        animation: slideIn 0.3s ease;
+      `;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Event listeners
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Export history function
+    function exportHistory() {
+      if (!currentUser) {
+        showNotification('Please login to export history!', 'warning');
+        return;
+      }
+      
+      const allHistory = [...chatHistory, ...medicineHistory].sort((a, b) => b.time - a.time);
+      
+      if (allHistory.length === 0) {
+        showNotification('No history to export!', 'info');
+        return;
+      }
+      
+      const exportData = {
+        user: currentUser.email,
+        exportDate: new Date().toISOString(),
+        totalItems: allHistory.length,
+        history: allHistory.map(item => ({
+          type: item.question ? 'Chat' : 'Medicine Search',
+          content: item.question || item.name,
+          timestamp: item.time
+        }))
+      };
+      
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `hospital_ai_history_${currentUser.email}_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showNotification('History exported successfully!', 'success');
+    }
+
+    // Test history function for debugging
+    function testHistory() {
+      console.log('=== HISTORY DEBUG INFO ===');
+      console.log('Current user:', currentUser);
+      console.log('Chat history length:', chatHistory.length);
+      console.log('Medicine history length:', medicineHistory.length);
+      console.log('Chat history:', chatHistory);
+      console.log('Medicine history:', medicineHistory);
+      
+      // Add a test entry
+      if (currentUser) {
+        chatHistory.push({ 
+          question: 'Test question - ' + new Date().toLocaleTimeString(), 
+          time: new Date() 
+        });
+        saveHistoryToStorage();
+        showHistory();
+        showNotification('Test entry added to history!', 'success');
+      } else {
+        showNotification('Please login first!', 'warning');
+      }
+    }
+
+    // Manual medicine search
+    async function searchMedicine() {
+      const medicineName = document.getElementById('medicine-input').value.trim();
+      if (!medicineName) {
+        showNotification('Please enter a medicine name!', 'warning');
+        return;
+      }
+      
+      if (!currentUser) {
+        showNotification('Please login to use the medicine search!', 'warning');
+        return;
+      }
+      
+      // Show loading state
+      const resultsDiv = document.getElementById('med-results');
+      resultsDiv.innerHTML = `
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <h3 class="card-title">Searching for ${medicineName}...</h3>
+          </div>
+          <div class="card-content">
+            <p>Please wait while we search for information about ${medicineName}...</p>
+          </div>
+        </div>
+      `;
+      
+      try {
+        // Create a text file with the medicine name
+        const textFile = new File([medicineName], 'medicine.txt', { type: 'text/plain' });
+        const formData = new FormData();
+        formData.append('file', textFile);
+        
+        console.log('Searching for medicine:', medicineName);
+        
+        const response = await fetch('/medicine-analyze', {
+          method: 'POST',
+          body: formData
+        });
+        
+        console.log('Search response status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Search response data:', data);
+        
+        if (data.parsed && data.data) {
+          const medData = data.data;
+          resultsDiv.innerHTML = `
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-check"></i>
+                </div>
+                <h3 class="card-title">Information for ${medData.name}</h3>
+              </div>
+              <div class="card-content">
+                <p><strong>Medicine Name:</strong> ${medData.name || 'Not detected'}</p>
+                <p><strong>Generic Name:</strong> ${medData.generic || 'Not detected'}</p>
+                <p><strong>Strength:</strong> ${medData.strength || 'Not detected'}</p>
+                <p><strong>Form:</strong> ${medData.form || 'Not detected'}</p>
+                <p><strong>Indications:</strong> ${medData.indications || 'Not available'}</p>
+                <p><strong>Contraindications:</strong> ${medData.contraindications || 'Not available'}</p>
+                <p><strong>Common Side Effects:</strong> ${medData.side_effects || 'Not available'}</p>
+                <p><strong>Serious Warnings:</strong> ${medData.warnings || 'Not available'}</p>
+                <p><strong>Interactions:</strong> ${medData.interactions || 'Not available'}</p>
+                <p><strong>Pregnancy/Lactation:</strong> ${medData.pregnancy || 'Not available'}</p>
+                <p><strong>Schedule/OTC:</strong> ${medData.schedule || 'Not available'}</p>
+                <p><strong>Note:</strong> ${medData.note || 'Educational use only — consult a doctor/pharmacist.'}</p>
+              </div>
+            </div>
+          `;
+          
+          // Save to history
+          medicineHistory.push({ name: medData.name || medicineName, time: new Date() });
+          saveHistoryToStorage();
+          showNotification(`Information found for ${medData.name}!`, 'success');
+        } else {
+          resultsDiv.innerHTML = `
+            <div class="card">
+              <div class="card-header">
+                <div class="card-icon" style="background: #f59e0b;">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="card-title">Search Incomplete</h3>
+              </div>
+              <div class="card-content">
+                <p>Could not find complete information for ${medicineName}.</p>
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 8px; overflow-x: auto;">${data.raw || 'No data received'}</pre>
+              </div>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.error('Medicine search error:', error);
+        resultsDiv.innerHTML = `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon" style="background: #ef4444;">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <h3 class="card-title">Search Failed</h3>
+            </div>
+            <div class="card-content">
+              <p>Failed to search for ${medicineName}. Please try again.</p>
+              <p><strong>Error details:</strong> ${error.message}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Initialize
+    updateAuthUI();
+  </script>
+</body>
+</html>
